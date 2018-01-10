@@ -1,0 +1,23 @@
+---
+platform: linux
+
+image_resource:
+  type: docker-image
+  source: {repository: busybox}
+
+inputs:
+- name: task-scripts
+
+run:
+  path: ./task-scripts/task_show_uname.sh
+  
+# Run:
+# fly -t tutorial e -c task_show_uname.yml
+# executing build 25 at http://192.168.100.4:8080/builds/25
+# initializing
+# running ./task-scripts/task_show_uname.sh
+# Linux ff5d67fb-4e7f-464a-6d6b-6f0622185803 4.4.0-101-generic #124~14.04.1-Ubuntu SMP Fri Nov 10 19:05:36 UTC 2017 x86_64 GNU/Linux
+# succeeded
+
+# This was running inside the task-scripts directory and the script needs to be executable (755)
+# https://concoursetutorial.com/basics/task-scripts/
