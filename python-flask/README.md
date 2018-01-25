@@ -11,13 +11,13 @@ def list_groups():
 
 ```html
 <html>
-	<body>
-		<h2> {{ title }} </h2><p>
-		<ul>
-		{% for item in groups %}
-			<li> {{ item }} </li>
-		{% endfor %}
-		</ul>
-	</body>
+  <body>
+    <h2> {{ title }} </h2><p>
+    <ul>
+      {% for item in groups %}
+        <li> {{ item }} </li>
+      {% endfor %}
+    </ul>
+  </body>
 </html>
 ```
