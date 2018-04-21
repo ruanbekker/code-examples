@@ -11,25 +11,25 @@ def id_generator():
         counter.value += 1
         return counter.value
 
-@app.route('/list', methods=['GET'])
+@app.route('/api/list', methods=['GET'])
 def list():
     return jsonify(a)
 
-@app.route('/add', methods=['POST'])
+@app.route('/api/add', methods=['POST'])
 def index():
     payload = request.json 
     payload['id'] = id_generator()
     a.append(payload)
     return "Created: {} \n".format(payload)
 
-@app.route('/get/<int:_id>', methods=['GET'])
+@app.route('/api/get/<int:_id>', methods=['GET'])
 def get(_id):
     for user in a:
         if _id == user['id']:
             selected_user = user
     return jsonify(selected_user)
 
-@app.route('/update/<int:_id>', methods=['PUT'])
+@app.route('/api/update/<int:_id>', methods=['PUT'])
 def update(_id):
     update_req = request.json
     key_to_update = update_req.keys()[0]
@@ -37,11 +37,11 @@ def update(_id):
     update_resp = (item for item in a if item['id'] == _id).next()
     return "Updated: {} \n".format(update_resp)
 
-@app.route('/delete/<int:_id>', methods=['DELETE'])
+@app.route('/api/delete/<int:_id>', methods=['DELETE'])
 def delete(_id):
     deleted_user = (item for item in a if item['id'] == _id).next()
     a.remove(deleted_user)
-    return "Deleted: {}".format(deleted_user)
+    return "Deleted: {} \n".format(deleted_user)
 
 if __name__ == '__main__':
     app.run()
