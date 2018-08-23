@@ -97,3 +97,15 @@ $ aws --profile prod rds describe-events --source-identifier "rds:db-2018-05-16-
     }
 ]
 ```
+## List Public RDS Instances:
+
+```
+$ aws --profile prod rds describe-db-instances --query 'DBInstances[?PubliclyAccessible==`true`].[DBInstanceIdentifier,Endpoint.Address]'
+
+[
+  [
+    "name",
+    "name.abcdef.eu-west-1.rds.amazonaws.com"
+  ]
+]
+```
