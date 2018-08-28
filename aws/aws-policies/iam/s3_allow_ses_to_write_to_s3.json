@@ -1,0 +1,19 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "AllowSESPutsToS3",
+            "Effect": "Allow",
+            "Principal": {
+                "Service": "ses.amazonaws.com"
+            },
+            "Action": "s3:PutObject",
+            "Resource": "arn:aws:s3:::bucket-name/path/to/drop/*",
+            "Condition": {
+                "StringEquals": {
+                    "aws:Referer": "123456789012"
+                }
+            }
+        }
+    ]
+}
