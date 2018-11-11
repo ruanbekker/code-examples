@@ -9,6 +9,12 @@ for row in rows:
     print("{}, {}".format(row['num'], row['city']))
 
 # output:
-# 2, cape town
-# 1, johannesburg
-# 1, kroonstad
+# 555346, auckland
+# 556127, bloemfontein
+# 555049, cape town
+# 555350, dublin
+# 556027, johannesburg
+# 555961, kroonstad
+# 555740, port elizabeth
+# 555645, pretoria
+# 554750, sydney
