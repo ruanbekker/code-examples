@@ -36,7 +36,7 @@ func main() {
 	fmt.Println("Connected to MongoDB!")
 
 	// Get a handle for your collection
-	collection := client.Database("test").Collection("trainers")
+	collection := client.Database("testdb").Collection("people")
 
 	// Some dummy data to add to the Database
 	ruan := Person{"Ruan", 32, "Cape Town"}
