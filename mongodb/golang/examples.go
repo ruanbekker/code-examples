@@ -99,15 +99,15 @@ func main() {
 	// Iterate through the cursor
 	for cur.Next(context.TODO()) {
 		var elem Person
-		err := cur.Decode(&elem)
-		if err != nil {
-			log.Fatal(err)
+		inerr := cur.Decode(&elem)
+		if inerr != nil {
+			log.Fatal(inerr)
 		}
 
 		results = append(results, &elem)
 	}
 
-	if err := cur.Err(); err != nil {
+	if err = cur.Err(); err != nil {
 		log.Fatal(err)
 	}
 
