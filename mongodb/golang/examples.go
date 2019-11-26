@@ -45,14 +45,14 @@ func main() {
 	frankie := Person{"Frankie", 31, "Nairobi"}
 
 	// Insert a single document
-	insertResult, err := collection.InsertOne(context.TODO(), ash)
+	insertResult, err := collection.InsertOne(context.TODO(), ruan)
 	if err != nil {
 		log.Fatal(err)
 	}
 	fmt.Println("Inserted a single document: ", insertResult.InsertedID)
 
 	// Insert multiple documents
-	trainers := []interface{}{misty, brock}
+	trainers := []interface{}{james, frankie}
 
 	insertManyResult, err := collection.InsertMany(context.TODO(), trainers)
 	if err != nil {
@@ -61,11 +61,11 @@ func main() {
 	fmt.Println("Inserted multiple documents: ", insertManyResult.InsertedIDs)
 
 	// Update a document
-	filter := bson.D{{"name", "Ash"}}
+	filter := bson.D{{Key: "name", Value: "Frankie"}}
 
 	update := bson.D{
-		{"$inc", bson.D{
-			{"age", 1},
+		{Key: "$inc", Value: bson.D{
+			{Key: "age", Value: 1},
 		}},
 	}
 
