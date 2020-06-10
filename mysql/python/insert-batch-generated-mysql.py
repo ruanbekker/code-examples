@@ -30,4 +30,5 @@ for x in range(1000000):
 
     cur.execute("""INSERT INTO myusers(name, surname, countries, job, os, car) VALUES(%s, %s, %s, %s, %s, %s)""", (a, b, c, d, e, f))
 
+db.commit()
 db.close()
