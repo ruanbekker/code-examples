@@ -10,6 +10,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
+// Person -
 type Person struct {
 	Name string
 	Age  int
@@ -19,7 +20,7 @@ type Person struct {
 func main() {
 
 	// Set client options
-	clientOptions := options.Client().ApplyURI("mongodb://mongodb:27017")
+	clientOptions := options.Client().ApplyURI("mongodb://localhost:27017")
 
 	// Connect to MongoDB
 	client, err := mongo.Connect(context.TODO(), clientOptions)
@@ -44,14 +45,14 @@ func main() {
 	frankie := Person{"Frankie", 31, "Nairobi"}
 
 	// Insert a single document
-	insertResult, err := collection.InsertOne(context.TODO(), ash)
+	insertResult, err := collection.InsertOne(context.TODO(), ruan)
 	if err != nil {
 		log.Fatal(err)
 	}
 	fmt.Println("Inserted a single document: ", insertResult.InsertedID)
 
 	// Insert multiple documents
-	trainers := []interface{}{misty, brock}
+	trainers := []interface{}{james, frankie}
 
 	insertManyResult, err := collection.InsertMany(context.TODO(), trainers)
 	if err != nil {
@@ -60,11 +61,11 @@ func main() {
 	fmt.Println("Inserted multiple documents: ", insertManyResult.InsertedIDs)
 
 	// Update a document
-	filter := bson.D{{"name", "Ash"}}
+	filter := bson.D{{Key: "name", Value: "Frankie"}}
 
 	update := bson.D{
-		{"$inc", bson.D{
-			{"age", 1},
+		{Key: "$inc", Value: bson.D{
+			{Key: "age", Value: 1},
 		}},
 	}
 
@@ -98,15 +99,15 @@ func main() {
 	// Iterate through the cursor
 	for cur.Next(context.TODO()) {
 		var elem Person
-		err := cur.Decode(&elem)
-		if err != nil {
-			log.Fatal(err)
+		inerr := cur.Decode(&elem)
+		if inerr != nil {
+			log.Fatal(inerr)
 		}
 
 		results = append(results, &elem)
 	}
 
-	if err := cur.Err(); err != nil {
+	if err = cur.Err(); err != nil {
 		log.Fatal(err)
 	}
 
